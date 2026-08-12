@@ -1,0 +1,43 @@
+generated: '2026-08-12'
+method: probed
+source: https://endeavorbiomedicines.com/.well-known/oauth-authorization-server
+docs: null
+docs_note: >-
+  Endeavor BioMedicines publishes no OAuth or scopes documentation. Everything below
+  was read directly from the RFC 8414 authorization-server metadata and the RFC 9728
+  protected-resource metadata that the host serves anonymously.
+schemes:
+- name: OAuth 2.1 (WordPress MCP adapter)
+  source: well-known/endeavor-biomedicines-oauth-authorization-server.json
+  issuer: https://endeavorbiomedicines.com
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://endeavorbiomedicines.com/oauth/authorize
+    tokenUrl: https://endeavorbiomedicines.com/oauth/token
+    revocationUrl: https://endeavorbiomedicines.com/oauth/revoke
+    pkce: S256
+    token_endpoint_auth_methods:
+    - none
+  - flow: refreshToken
+    tokenUrl: https://endeavorbiomedicines.com/oauth/token
+scopes:
+- scope: mcp
+  description: >-
+    The single scope advertised by both the authorization server and the protected
+    resource. It gates the MCP endpoint at
+    https://endeavorbiomedicines.com/wp-json/mcp/mcp-oauth-server. The provider
+    publishes no description of what the scope grants; nothing further is asserted.
+  flows:
+  - authorizationCode
+  - refreshToken
+  sources:
+  - well-known/endeavor-biomedicines-oauth-authorization-server.json
+  - well-known/endeavor-biomedicines-oauth-protected-resource.json
+protected_resources:
+- resource: https://endeavorbiomedicines.com/wp-json/mcp/mcp-oauth-server
+  authorization_servers:
+  - https://endeavorbiomedicines.com
+  bearer_methods_supported:
+  - header
+  scopes_supported:
+  - mcp

@@ -1,0 +1,91 @@
+generated: '2026-08-12'
+method: probed
+source: >-
+  https://endeavorbiomedicines.com/wp-json/wp/v2/posts (live response headers) +
+  openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+note: >-
+  Cross-cutting runtime semantics observed on the live host. The provider documents
+  none of this; it is the WordPress REST convention set as this install actually
+  serves it.
+authentication:
+  anonymous_read: true
+  styles:
+  - X-WP-Nonce header (cookie-authenticated browser sessions)
+  - Authorization bearer header
+  - OAuth 2.1 (MCP endpoint only, scope "mcp")
+  see: authentication/endeavor-biomedicines-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    No Idempotency-Key header is accepted or documented. Repeating a write is not
+    safe by contract. No Idempotency pointer is emitted for this provider.
+pagination:
+  style: page-number
+  request_params:
+  - name: page
+    default: 1
+  - name: per_page
+    default: 10
+    max: 100
+  - name: offset
+  - name: order
+    enum: [asc, desc]
+  - name: orderby
+  response_headers:
+  - X-WP-Total
+  - X-WP-TotalPages
+  - 'Link: rel="next" / rel="prev" (RFC 8288)'
+  observed:
+    url: https://endeavorbiomedicines.com/wp-json/wp/v2/posts?per_page=1
+    x_wp_total: 22
+    x_wp_totalpages: 22
+    link: '<https://endeavorbiomedicines.com/wp-json/wp/v2/posts?per_page=1&page=2>; rel="next"'
+  cors_exposed: 'access-control-expose-headers: X-WP-Total, X-WP-TotalPages, Link'
+sparse_fieldsets:
+  supported: true
+  param: _fields
+  note: WordPress core supports _fields to trim the response body.
+embedding:
+  supported: true
+  param: _embed
+  note: >-
+    _embed inlines linked resources (author, featured media, terms) advertised via the
+    _links member of each object — HAL-style link relations.
+filtering:
+  params:
+  - search
+  - after
+  - before
+  - modified_after
+  - modified_before
+  - categories
+  - tags
+  - slug
+  - status
+  note: Per-collection; see the derived OpenAPI parameters for the exact set.
+request_tracing:
+  request_id_header: null
+  note: No request-id or correlation header is returned.
+versioning:
+  style: namespace-in-path
+  current: wp/v2
+  see: lifecycle/endeavor-biomedicines-lifecycle.yml
+error_envelope:
+  media_type: application/json
+  shape: '{"code": string, "message": string, "data": {"status": integer}}'
+  see: errors/endeavor-biomedicines-problem-types.yml
+rate_limit_signaling:
+  headers: []
+  note: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After headers were returned on any
+    observed response. See rate-limits/endeavor-biomedicines-rate-limits.yml.
+caching:
+  headers_observed:
+  - 'vary: Origin,Accept-Encoding'
+  - 'x-robots-tag: noindex'
+  - 'x-content-type-options: nosniff'
+  - 'referrer-policy: no-referrer'
+  - 'strict-transport-security: max-age=15768000; includeSubDomains'
+  etag: false
+  note: No ETag or Cache-Control was returned on the probed collection endpoints.

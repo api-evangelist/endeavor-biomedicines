@@ -1,0 +1,55 @@
+generated: '2026-08-12'
+method: derived
+source: mcp/endeavor-biomedicines-mcp.yml + openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+surfaces:
+  openapi:
+    file: openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+    gated: false
+    note: >-
+      Derived from the route index the host publishes at /wp-json/. Content read
+      operations answer anonymously; write and administrative operations require
+      WordPress authentication.
+  mcp:
+    url: https://endeavorbiomedicines.com/wp-json/mcp/mcp-oauth-server
+    gated: true
+    note: >-
+      tools/list returns HTTP 401 mcp_unauthorized without an OAuth 2.1 token in the
+      "mcp" scope, so the tool names are unknown. Nothing is mapped by guess.
+  graphql:
+    url: null
+    note: No GraphQL surface. /graphql returns HTTP 404 on this host.
+crosswalk: []
+mcp_only: []
+rest_only:
+- capability: Content — posts, pages, media, blocks
+  note: >-
+    Anonymous reads across /wp/v2/posts, /wp/v2/pages, /wp/v2/media, /wp/v2/blocks
+    and their per-id, revision and autosave operations.
+- capability: Taxonomy — categories, tags
+  note: /wp/v2/categories and /wp/v2/tags, anonymous read.
+- capability: Type + schema discovery
+  note: /wp/v2/types, /wp/v2/taxonomies, /wp/v2/statuses, anonymous read.
+- capability: Users and comments
+  note: /wp/v2/users, /wp/v2/comments — read exposure varies by WordPress settings.
+- capability: Site settings, themes, plugins, menus, templates
+  note: Administrative surface under /wp/v2; authenticated only.
+- capability: Site health
+  note: /wp-site-health/v1 diagnostics; authenticated only.
+- capability: Abilities
+  note: >-
+    /wp-abilities/v1 — the WordPress Abilities API that the MCP adapter projects
+    tools from. This is the most likely backing surface for the gated tool set, but
+    the binding is unverified because tools/list is 401.
+- capability: oEmbed
+  note: /oembed/1.0/embed and proxy.
+coverage:
+  tools_named: 0
+  tools_bound: 0
+  mcp_only: 0
+  rest_operations_total: 302
+  rest_operations_with_tool: 0
+  reason: >-
+    Zero bound rows is a measurement result, not a gap in this artifact: the MCP tool
+    list is authentication-gated, so no honest tool-to-operation binding can be made.
+    Re-run this crosswalk if the provider ever publishes its tool list or exposes an
+    anonymous tools/list.

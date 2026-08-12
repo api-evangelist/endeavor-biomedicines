@@ -1,0 +1,39 @@
+generated: '2026-08-12'
+method: probed
+source: https://endeavorbiomedicines.com/wp-json/
+versioning:
+  scheme: namespace-in-path
+  current: wp/v2
+  docs: null
+  note: >-
+    Versioning is the WordPress namespace convention (/wp-json/<namespace>/<version>).
+    The host currently registers wp/v2, oembed/1.0, wp-abilities/v1, wp-block-editor/v1,
+    wp-site-health/v1 and an unversioned mcp namespace. The provider publishes no
+    versioning policy of its own.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No deprecation policy, no Deprecation or Sunset headers observed (RFC 8594 not in
+    use). Route churn on this host follows WordPress core and plugin upgrades, which
+    the provider does not announce.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+status_page_note: >-
+  status.endeavorbiomedicines.com does not resolve; no status page is published. No
+  StatusPage pointer is emitted.
+deprecated_operations: []
+changelog: null
+changelog_note: >-
+  No API changelog. The company publishes dated corporate press releases under
+  /media/, which are content, not API release notes.
+x-evidence:
+- fetched: '2026-08-12'
+  url: https://endeavorbiomedicines.com/wp-json/
+  http_status: 200
+- fetched: '2026-08-12'
+  url: https://status.endeavorbiomedicines.com/
+  http_status: 0
+  note: DNS does not resolve

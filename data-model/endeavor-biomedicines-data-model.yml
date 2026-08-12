@@ -1,0 +1,139 @@
+generated: '2026-08-12'
+method: derived
+source: >-
+  https://endeavorbiomedicines.com/wp-json/wp/v2/types,
+  https://endeavorbiomedicines.com/wp-json/wp/v2/taxonomies,
+  openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+note: >-
+  Entity graph read from the type and taxonomy registries the host publishes live.
+  Every entity, rest_base and taxonomy binding below is verbatim from those two
+  documents. "member" and "porto_builder" are custom types this install registers —
+  "member" is the leadership / board / advisor roster rendered on the About pages.
+entities:
+- name: post
+  label: Posts
+  rest_base: posts
+  path: /wp/v2/posts
+  public_read: true
+  hierarchical: false
+  note: Corporate press releases and news items.
+  count_observed: 22
+- name: page
+  label: Pages
+  rest_base: pages
+  path: /wp/v2/pages
+  public_read: true
+  hierarchical: true
+  note: Pipeline, science, therapeutic area, about and legal pages.
+- name: attachment
+  label: Media
+  rest_base: media
+  path: /wp/v2/media
+  public_read: true
+  hierarchical: false
+- name: member
+  label: Members
+  rest_base: member
+  path: /wp/v2/member
+  public_read: true
+  hierarchical: false
+  note: Custom post type backing the leadership, board and advisor listings.
+- name: category
+  label: Categories
+  rest_base: categories
+  path: /wp/v2/categories
+  public_read: true
+  note: Includes year-based news categories (news-2021, …).
+- name: post_tag
+  label: Tags
+  rest_base: tags
+  path: /wp/v2/tags
+  public_read: true
+- name: member_cat
+  label: Member Categories
+  rest_base: member_cat
+  path: /wp/v2/member_cat
+  public_read: true
+- name: user
+  label: Users
+  rest_base: users
+  path: /wp/v2/users
+- name: comment
+  label: Comments
+  rest_base: comments
+  path: /wp/v2/comments
+- name: wp_block
+  label: Patterns
+  rest_base: blocks
+  path: /wp/v2/blocks
+- name: wp_template
+  label: Templates
+  rest_base: templates
+  path: /wp/v2/templates
+- name: nav_menu_item
+  label: Navigation Menu Items
+  rest_base: menu-items
+  path: /wp/v2/menu-items
+- name: porto_builder
+  label: Templates Builder
+  rest_base: porto_builder
+  path: /wp/v2/porto_builder
+  note: Theme-provided layout type.
+relationships:
+- from: post
+  to: category
+  kind: has_many
+  via: categories
+- from: post
+  to: post_tag
+  kind: has_many
+  via: tags
+- from: post
+  to: user
+  kind: belongs_to
+  via: author
+- from: post
+  to: attachment
+  kind: has_one
+  via: featured_media
+- from: page
+  to: page
+  kind: belongs_to
+  via: parent
+- from: page
+  to: user
+  kind: belongs_to
+  via: author
+- from: page
+  to: attachment
+  kind: has_one
+  via: featured_media
+- from: member
+  to: member_cat
+  kind: has_many
+  via: member_cat
+- from: comment
+  to: post
+  kind: belongs_to
+  via: post
+- from: comment
+  to: user
+  kind: belongs_to
+  via: author
+- from: nav_menu_item
+  to: nav_menu
+  kind: belongs_to
+  via: menus
+- from: wp_block
+  to: wp_pattern_category
+  kind: has_many
+  via: wp_pattern_category
+- from: attachment
+  to: post
+  kind: belongs_to
+  via: post
+id_convention:
+  style: integer
+  note: >-
+    All objects are addressed by integer id (/wp/v2/posts/2140). Each object also
+    carries a slug and a _links member with HAL-style relations that _embed resolves.

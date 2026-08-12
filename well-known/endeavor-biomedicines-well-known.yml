@@ -1,0 +1,40 @@
+generated: '2026-08-12'
+method: probed
+source: https://endeavorbiomedicines.com/
+host: https://endeavorbiomedicines.com
+note: >-
+  Two of the probed paths returned real documents. The host publishes RFC 8414 OAuth
+  2.1 authorization-server metadata and RFC 9728 OAuth protected-resource metadata,
+  both emitted by the WordPress MCP adapter running on the corporate site. Every other
+  path returned HTTP 404 with the site's WordPress HTML 404 page — recorded as an
+  honest absence, not a document.
+documents:
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  content_type: application/json
+  spec: RFC 8414
+  file: endeavor-biomedicines-oauth-authorization-server.json
+- path: /.well-known/oauth-protected-resource
+  status: 200
+  content_type: application/json
+  spec: RFC 9728
+  file: endeavor-biomedicines-oauth-protected-resource.json
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+- path: /.well-known/agent-card.json
+  status: 404
+- path: /.well-known/agent.json
+  status: 404
+x-evidence:
+  fetched: '2026-08-12'
+  probed_hosts:
+  - endeavorbiomedicines.com
+  false_positive_check: >-
+    404 bodies were inspected and are the WordPress theme's HTML 404 page, not a
+    200-with-HTML SPA catch-all. The two 200 responses parse as JSON objects.

@@ -1,0 +1,24 @@
+generated: '2026-08-12'
+method: probed
+source: https://endeavorbiomedicines.com/wp-json/wp/v2/posts?per_page=1
+limit_count: 0
+limits: []
+response_headers: []
+exhaustion_status: null
+note: >-
+  No rate limits are published and none are signalled at runtime. A live anonymous
+  GET of /wp-json/wp/v2/posts returned HTTP 200 with no RateLimit-*, X-RateLimit-*
+  or Retry-After header in the response. There is no developer documentation on this
+  host in which limits could be documented. limit_count 0 is a checked zero. An
+  agent calling this API has no runtime signal to back off on and should self-govern.
+x-evidence:
+- url: https://endeavorbiomedicines.com/wp-json/wp/v2/posts?per_page=1
+  status: 200
+  headers_observed:
+  - x-wp-total
+  - x-wp-totalpages
+  - link
+  - strict-transport-security
+  - x-content-type-options
+  - referrer-policy
+  - vary

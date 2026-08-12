@@ -42,5 +42,36 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Endeavor BioMedicines is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/endeavor-biomedicines_stock/
+Endeavor BioMedicines is a clinical-stage biotechnology company headquartered in San Diego,
+California, developing medicines aimed at reversing — not merely slowing — the course of
+life-threatening fibrotic and oncologic disease. Its lead investigational candidate,
+taladegib (ENV-101), is a Hedgehog pathway inhibitor in clinical development for idiopathic
+pulmonary fibrosis; it has also in-licensed HMBD-501, a next-generation HER3-targeted
+antibody-drug conjugate.
+
+## What was found
+
+**Endeavor BioMedicines runs no developer program.** There is no developer portal, no API
+documentation, no pricing, no sign-up, no SDKs, no status page and no published OpenAPI.
+
+There is, however, a real machine-readable surface on the corporate host, and it is profiled
+here honestly as what it is — a site-platform API rather than a product API:
+
+- **WordPress REST API** at `https://endeavorbiomedicines.com/wp-json` — 316 routes across 16
+  namespaces. Content reads (posts, pages, media, taxonomies, the leadership roster) answer
+  anonymously. `openapi/` holds an OpenAPI 3.1 description **derived** by API Evangelist from
+  the route index the host itself publishes; the verbatim route index is kept in
+  `openapi/_original/`.
+- **MCP server** at `/wp-json/mcp/mcp-oauth-server` — live but authentication-gated. An
+  anonymous `tools/list` returns `401 mcp_unauthorized`, so **no tool list is recorded**; the
+  crosswalk deliberately holds zero mapped rows rather than guessed ones.
+- **OAuth 2.1 discovery documents** served anonymously at
+  `/.well-known/oauth-authorization-server` (RFC 8414) and `/.well-known/oauth-protected-resource`
+  (RFC 9728) — authorization code + refresh token, PKCE S256, single scope `mcp`. Both are
+  saved verbatim in `well-known/`.
+
+No A2A agent card, no security.txt, no OpenID configuration, no api-catalog, no ai-plugin —
+all probed, all 404, all recorded as absences in `well-known/`.
+
+- Company: https://endeavorbiomedicines.com/
+- Secondary market listing: https://forgeglobal.com/endeavor-biomedicines_stock/

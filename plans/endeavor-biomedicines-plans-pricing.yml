@@ -1,0 +1,19 @@
+generated: '2026-08-12'
+method: searched
+source: https://endeavorbiomedicines.com/
+plan_count: 0
+plans: []
+note: >-
+  Endeavor BioMedicines is a clinical-stage biotechnology company and sells no API
+  product. There is no pricing page, no developer portal, no sign-up and no plans
+  page anywhere on endeavorbiomedicines.com — the sitemap lists 21 pages, all of them
+  corporate (science, pipeline, therapeutic areas, about, media, careers, contact,
+  legal). The machine-readable surface profiled in this repo is the site's own
+  WordPress REST API, which is free and unmetered by virtue of being incidental
+  rather than commercial. plan_count 0 is an honest zero, not an unchecked field.
+x-evidence:
+- url: https://endeavorbiomedicines.com/sitemap.xml
+  status: 200
+  note: 21 URLs, no pricing or plans page
+- url: https://endeavorbiomedicines.com/
+  status: 200

@@ -1,0 +1,58 @@
+generated: '2026-08-12'
+method: probed
+status: published
+source: https://endeavorbiomedicines.com/.well-known/oauth-protected-resource
+server:
+  name: endeavor-biomedicines-wordpress-mcp
+  transport: http
+  url: https://endeavorbiomedicines.com/wp-json/mcp/mcp-oauth-server
+  implementation: >-
+    WordPress MCP adapter (the "mcp" REST namespace registered alongside the
+    wp-abilities/v1 namespace on this WordPress install). Not a product MCP server —
+    it is the site platform's agent surface.
+authorization:
+  gated: true
+  scheme: OAuth 2.1
+  scopes:
+  - mcp
+  authorization_server: https://endeavorbiomedicines.com
+  authorization_endpoint: https://endeavorbiomedicines.com/oauth/authorize
+  token_endpoint: https://endeavorbiomedicines.com/oauth/token
+  revocation_endpoint: https://endeavorbiomedicines.com/oauth/revoke
+  grant_types:
+  - authorization_code
+  - refresh_token
+  code_challenge_methods:
+  - S256
+  bearer_methods_supported:
+  - header
+  dynamic_client_registration: >-
+    client_id_metadata_document_supported = true; no registration_endpoint is
+    advertised.
+tools: []
+tools_note: >-
+  The live tool set could not be read. An anonymous POST of
+  {"jsonrpc":"2.0","id":1,"method":"tools/list"} and of "initialize" both returned
+  HTTP 401 {"code":"mcp_unauthorized","message":"MCP authentication required."}.
+  Enumerating the real tools with their inputSchema requires an OAuth 2.1 access
+  token in the "mcp" scope, which API Evangelist does not hold and will not obtain.
+  No tools are recorded rather than guessed.
+related_routes:
+- /wp-json/mcp
+- /wp-json/mcp/mcp-adapter-default-server
+- /wp-json/mcp/mcp-oauth-server
+- /wp-json/wp-abilities/v1
+x-evidence:
+- fetched: '2026-08-12'
+  url: https://endeavorbiomedicines.com/wp-json/mcp/mcp-oauth-server
+  method: POST tools/list
+  http_status: 401
+  body: '{"code":"mcp_unauthorized","message":"MCP authentication required.","data":{"status":401}}'
+- fetched: '2026-08-12'
+  url: https://endeavorbiomedicines.com/.well-known/oauth-protected-resource
+  http_status: 200
+  content_type: application/json
+- fetched: '2026-08-12'
+  url: https://endeavorbiomedicines.com/.well-known/oauth-authorization-server
+  http_status: 200
+  content_type: application/json

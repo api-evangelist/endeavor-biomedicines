@@ -1,0 +1,61 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+format: wordpress-rest-error
+format_note: >-
+  Not RFC 9457. The API returns the WordPress REST error envelope as
+  application/json, not application/problem+json. There is no "type" URI and no
+  "detail" member.
+envelope:
+  media_type: application/json
+  shape:
+    code: Machine-readable error slug, e.g. mcp_unauthorized, rest_no_route.
+    message: Human-readable message.
+    data.status: HTTP status code, repeated in the body.
+  example_observed:
+    url: https://endeavorbiomedicines.com/wp-json/mcp/mcp-oauth-server
+    fetched: '2026-08-12'
+    http_status: 401
+    body: '{"code":"mcp_unauthorized","message":"MCP authentication required.","data":{"status":401}}'
+problems:
+- status: 400
+  code: rest_invalid_param
+  title: Invalid request parameter
+  remediation: >-
+    Check the parameter against the enum/default published for the operation in the
+    derived OpenAPI; WordPress validates against the registered args schema.
+  source: openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+- status: 401
+  code: mcp_unauthorized
+  title: MCP authentication required
+  remediation: >-
+    Obtain an OAuth 2.1 access token in the "mcp" scope from
+    https://endeavorbiomedicines.com/oauth/token before calling the MCP endpoint.
+  observed: true
+  source: https://endeavorbiomedicines.com/wp-json/mcp/mcp-oauth-server
+- status: 401
+  code: rest_not_logged_in
+  title: Authentication required
+  remediation: Authenticate with a WordPress session nonce or bearer token.
+  source: openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+- status: 403
+  code: rest_forbidden
+  title: Forbidden — the current user cannot perform this action
+  remediation: The authenticated user lacks the WordPress capability for the route.
+  source: openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+- status: 404
+  code: rest_no_route
+  title: No route matched the URL and request method
+  remediation: >-
+    Confirm the namespace and path against the live route index at
+    https://endeavorbiomedicines.com/wp-json/.
+  source: openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+- status: 404
+  code: rest_post_invalid_id
+  title: Invalid post ID
+  remediation: The requested object does not exist or is not publicly visible.
+  source: openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+note: >-
+  Codes marked observed:true were seen live. The remainder are the standard WordPress
+  REST codes implied by the 4xx responses in the derived spec; their exact strings are
+  WordPress core values, not values this provider documents.

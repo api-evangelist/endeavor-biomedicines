@@ -1,18 +1,77 @@
 aid: endeavor-biomedicines
 name: Endeavor BioMedicines
-description: 'Endeavor BioMedicines is a company surfaced via the API Evangelist harvest backlog (source:
-  secondary-market) and added to the network as a stub for full-pipeline profiling.'
+description: 'Endeavor BioMedicines is a clinical-stage biotechnology company headquartered
+  in San Diego, California, developing medicines aimed at reversing — not merely slowing
+  — the course of life-threatening fibrotic and oncologic disease. Its lead investigational
+  candidate, taladegib (ENV-101), is an inhibitor of the Hedgehog signaling pathway
+  in clinical development for idiopathic pulmonary fibrosis, and it has in-licensed
+  HMBD-501, a next-generation HER3-targeted antibody-drug conjugate. Endeavor publishes
+  no developer program or product API; the machine-readable surface profiled here is
+  the public WordPress REST API served from its corporate website, together with an
+  authenticated WordPress MCP server and the RFC 8414 / RFC 9728 OAuth 2.1 discovery
+  documents that host advertises.'
 url: https://raw.githubusercontent.com/api-evangelist/endeavor-biomedicines/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profile
+x-tier-reason: enrichment
+image: https://endeavorbiomedicines.com/wp-content/uploads/2024/04/OG_Lungs.jpg
 specificationVersion: '0.20'
 created: '2026-08-12'
 modified: '2026-08-12'
 tags:
 - Company
-apis: []
+- Biotechnology
+- Pharmaceuticals
+- Life Sciences
+- Clinical Trials
+- Healthcare
+- Drug Development
+- Content
+- WordPress
+apis:
+- name: Endeavor BioMedicines WordPress REST API
+  description: 'The public WordPress REST API served by endeavorbiomedicines.com. Content
+    read operations — posts, pages, media, taxonomies and types — answer anonymously,
+    which makes the company''s press releases, pipeline pages and media library machine-readable.
+    Write and administrative operations require WordPress authentication. This is a
+    site-platform API rather than a product API: Endeavor BioMedicines publishes no
+    developer portal, no API documentation and no plans.'
+  humanURL: https://endeavorbiomedicines.com/
+  baseURL: https://endeavorbiomedicines.com/wp-json
+  tags:
+  - Content
+  - WordPress
+  - REST
+  properties:
+  - type: OpenAPI
+    url: openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+  - type: Overlay
+    url: overlays/endeavor-biomedicines-wordpress-rest-overlay.yaml
+  - type: Conventions
+    url: conventions/endeavor-biomedicines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/endeavor-biomedicines-problem-types.yml
+  - type: DataModel
+    url: data-model/endeavor-biomedicines-data-model.yml
+- name: Endeavor BioMedicines WordPress MCP Server
+  description: 'An MCP (Model Context Protocol) server exposed by the WordPress MCP
+    adapter at /wp-json/mcp/mcp-oauth-server on endeavorbiomedicines.com. The endpoint
+    is live but authentication-gated: an anonymous initialize / tools/list returns HTTP
+    401 mcp_unauthorized. Its authorization server metadata is published anonymously
+    at /.well-known/oauth-authorization-server (OAuth 2.1, authorization_code + refresh_token,
+    PKCE S256, single scope "mcp"), and the protected-resource metadata at /.well-known/oauth-protected-resource.'
+  humanURL: https://endeavorbiomedicines.com/.well-known/oauth-protected-resource
+  baseURL: https://endeavorbiomedicines.com/wp-json/mcp/mcp-oauth-server
+  tags:
+  - MCP
+  - Agents
+  - WordPress
+  properties:
+  - type: MCPServer
+    url: mcp/endeavor-biomedicines-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/endeavor-biomedicines-tool-crosswalk.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +79,59 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
+  url: https://endeavorbiomedicines.com/
+- type: Blog
+  url: https://endeavorbiomedicines.com/media/
+- type: BlogRSS
+  url: https://endeavorbiomedicines.com/feed/
+- type: Support
+  url: https://endeavorbiomedicines.com/contact/
+- type: PrivacyPolicy
+  url: https://endeavorbiomedicines.com/privacy/
+- type: TermsOfService
+  url: https://endeavorbiomedicines.com/legal-notices/
+- type: WellKnown
+  url: well-known/endeavor-biomedicines-well-known.yml
+- type: Authentication
+  url: authentication/endeavor-biomedicines-authentication.yml
+- type: OAuthScopes
+  url: scopes/endeavor-biomedicines-scopes.yml
+- type: Conformance
+  url: conformance/endeavor-biomedicines-conformance.yml
+- type: Lifecycle
+  url: lifecycle/endeavor-biomedicines-lifecycle.yml
+- type: DomainSecurity
+  url: security/endeavor-biomedicines-domain-security.yml
+- type: LLMsTxt
+  url: llms/endeavor-biomedicines-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Plans
+  url: plans/endeavor-biomedicines-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/endeavor-biomedicines-rate-limits.yml
+- type: SecondaryMarket
   url: https://forgeglobal.com/endeavor-biomedicines_stock/
+x-enrichment:
+  date: '2026-08-12'
+  status: enriched
+  artifacts_added: 23
+  pass: local-v1
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Endeavor BioMedicines publishes no developer program, but its corporate host does
+    serve a real machine-readable surface — an anonymously readable WordPress REST API
+    at /wp-json (316 routes), an authentication-gated WordPress MCP server, and RFC 8414
+    / RFC 9728 OAuth 2.1 discovery documents — all of which were probed and captured.
+  evidence:
+  - url: https://endeavorbiomedicines.com/wp-json/
+    status: 200
+  - url: https://endeavorbiomedicines.com/.well-known/oauth-authorization-server
+    status: 200
+  - url: https://endeavorbiomedicines.com/wp-json/mcp/mcp-oauth-server
+    status: 401
+  - url: https://endeavorbiomedicines.com/.well-known/agent-card.json
+    status: 404
+  checked: '2026-08-12'

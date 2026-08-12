@@ -1,0 +1,54 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Endeavor BioMedicines WordPress REST API
+  version: 1.0.0
+extends: openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+x-generated: '2026-08-12'
+x-method: generated
+x-source: >-
+  API Evangelist enrichment pass 2026-08-12; every value below is an annotation added
+  by API Evangelist, not a claim published by Endeavor BioMedicines.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: endeavor-biomedicines
+    x-apievangelist-surface: site-platform
+    x-apievangelist-note: >-
+      Incidental API surface. Endeavor BioMedicines runs no developer program; this
+      contract was derived by API Evangelist from the WordPress route index the host
+      publishes at /wp-json/.
+- target: $.info
+  update:
+    x-apievangelist-artifacts:
+      conventions: conventions/endeavor-biomedicines-conventions.yml
+      errors: errors/endeavor-biomedicines-problem-types.yml
+      authentication: authentication/endeavor-biomedicines-authentication.yml
+      scopes: scopes/endeavor-biomedicines-scopes.yml
+      lifecycle: lifecycle/endeavor-biomedicines-lifecycle.yml
+      data_model: data-model/endeavor-biomedicines-data-model.yml
+      rate_limits: rate-limits/endeavor-biomedicines-rate-limits.yml
+      well_known: well-known/endeavor-biomedicines-well-known.yml
+      mcp: mcp/endeavor-biomedicines-mcp.yml
+- target: $.paths['/wp/v2/posts'].get
+  update:
+    x-apievangelist-access: anonymous
+    x-apievangelist-content: >-
+      Corporate press releases. 22 items at the time of profiling; paged with
+      page/per_page and X-WP-Total / X-WP-TotalPages.
+- target: $.paths['/wp/v2/pages'].get
+  update:
+    x-apievangelist-access: anonymous
+    x-apievangelist-content: >-
+      Science, pipeline, therapeutic-area, about and legal pages.
+- target: $.paths['/wp/v2/member'].get
+  update:
+    x-apievangelist-access: anonymous
+    x-apievangelist-content: >-
+      Custom post type backing the leadership, board of directors and advisor
+      listings.
+- target: $.paths['/mcp/mcp-oauth-server'].post
+  update:
+    x-apievangelist-access: oauth2
+    x-apievangelist-note: >-
+      MCP endpoint. Anonymous initialize and tools/list return HTTP 401
+      mcp_unauthorized; an OAuth 2.1 token in the "mcp" scope is required.

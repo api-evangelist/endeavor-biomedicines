@@ -1,0 +1,74 @@
+generated: '2026-08-12'
+method: probed
+source: >-
+  https://endeavorbiomedicines.com/.well-known/oauth-authorization-server,
+  https://endeavorbiomedicines.com/.well-known/oauth-protected-resource,
+  https://endeavorbiomedicines.com/wp-json/
+note: >-
+  Endeavor BioMedicines publishes no compliance program, no certifications page and
+  no trust center. Everything asserted here is a cross-cutting technical standard
+  observed on the live host; nothing is a claim the company itself makes.
+standards:
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: >-
+    /.well-known/oauth-authorization-server returns 200 with issuer,
+    authorization_endpoint, token_endpoint, response_types_supported and
+    grant_types_supported.
+- id: rfc9728-oauth-protected-resource-metadata
+  conforms: true
+  evidence: >-
+    /.well-known/oauth-protected-resource returns 200 with resource,
+    authorization_servers, bearer_methods_supported and scopes_supported.
+- id: rfc7636-pkce
+  conforms: true
+  evidence: code_challenge_methods_supported = ["S256"].
+- id: oauth2
+  conforms: true
+  evidence: OAuth 2.1 authorization_code + refresh_token grants on the MCP endpoint.
+- id: mcp
+  conforms: partial
+  evidence: >-
+    A live MCP HTTP endpoint exists at /wp-json/mcp/mcp-oauth-server, but the
+    protocol version and capability set cannot be verified — initialize returns 401.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use the WordPress envelope {"code","message","data":{"status"}} with
+    Content-Type application/json, not application/problem+json.
+- id: rfc8615-well-known-uris
+  conforms: true
+  evidence: Two documents served under /.well-known/ with correct JSON content types.
+- id: pagination
+  conforms: true
+  evidence: >-
+    page/per_page query parameters plus X-WP-Total, X-WP-TotalPages and RFC 8288 Link
+    rel="next" response headers, observed live on /wp-json/wp/v2/posts.
+- id: rfc8288-web-linking
+  conforms: true
+  evidence: 'Link: <...page=2>; rel="next" returned on paged collections.'
+- id: idempotency
+  conforms: false
+  evidence: No Idempotency-Key header or equivalent is accepted or documented.
+- id: hsts
+  conforms: true
+  evidence: 'Strict-Transport-Security: max-age=15768000; includeSubDomains.'
+- id: json-api
+  conforms: false
+  evidence: WordPress REST shapes, not JSON:API media types.
+- id: openapi
+  conforms: false
+  evidence: >-
+    The provider publishes no OpenAPI. The spec in openapi/ is derived by API
+    Evangelist from the host's /wp-json/ route index.
+- id: hipaa
+  conforms: unknown
+  evidence: >-
+    No published compliance posture. Clinical trial operations are not exposed through
+    any surface profiled here.

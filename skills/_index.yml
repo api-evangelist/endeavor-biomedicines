@@ -1,0 +1,21 @@
+generated: '2026-08-12'
+method: generated
+source: openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+note: >-
+  Endeavor BioMedicines publishes no AGENTS.md and no skills of its own
+  (https://endeavorbiomedicines.com/llms.txt returns 404). These skills are authored by
+  API Evangelist and every operationId referenced was verified to exist verbatim in the
+  derived OpenAPI.
+skills:
+- file: endeavor-biomedicines-read-press-releases.md
+  name: Read Endeavor BioMedicines press releases
+  api: openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+  operations: [getWpV2Posts, getWpV2PostsById, getWpV2Categories, getWpV2Media]
+- file: endeavor-biomedicines-read-company-profile.md
+  name: Read the Endeavor BioMedicines company profile
+  api: openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+  operations: [getWpV2Types, getWpV2Taxonomies, getWpV2Pages, getWpV2PagesById, getWpV2Member, getWpV2MemberById, getWpV2MemberCat]
+- file: endeavor-biomedicines-inspect-mcp-surface.md
+  name: Inspect the Endeavor BioMedicines MCP surface
+  api: openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+  operations: [getMcp, getWpabilitiesV1, getWpabilitiesV1Abilities]

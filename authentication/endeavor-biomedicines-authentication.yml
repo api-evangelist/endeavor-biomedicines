@@ -1,0 +1,69 @@
+generated: '2026-08-12'
+method: probed
+source: >-
+  openapi/endeavor-biomedicines-wordpress-rest-openapi.yml +
+  https://endeavorbiomedicines.com/.well-known/oauth-authorization-server
+docs: null
+docs_note: >-
+  There is no published authentication documentation. The profile below is derived
+  from the OpenAPI this pipeline built from the host's own /wp-json/ route index and
+  upgraded with the OAuth 2.1 metadata the host serves anonymously.
+summary:
+  types:
+  - apiKey
+  - http
+  - oauth2
+  api_key_in:
+  - header
+  oauth2_flows:
+  - authorizationCode
+  - refreshToken
+  anonymous_read: true
+  anonymous_read_note: >-
+    Content reads (/wp/v2/posts, /wp/v2/pages, /wp/v2/media, /wp/v2/categories,
+    /wp/v2/types) return HTTP 200 with no credentials — verified live on 2026-08-12.
+    Write and administrative operations return 401/403.
+schemes:
+- name: wpNonce
+  type: apiKey
+  in: header
+  parameter: X-WP-Nonce
+  description: >-
+    WordPress cookie-authenticated nonce. Advertised by the host in
+    Access-Control-Allow-Headers on every /wp-json response.
+  sources:
+  - openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: >-
+    Bearer token in the Authorization header, advertised by the host in
+    Access-Control-Allow-Headers.
+  sources:
+  - openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
+- name: mcpOAuth
+  type: oauth2
+  description: >-
+    OAuth 2.1 authorization-code flow with PKCE (S256) protecting the MCP endpoint.
+    token_endpoint_auth_methods_supported is ["none"] — public clients — and
+    client_id_metadata_document_supported is true, so clients identify themselves
+    with a client-ID metadata document rather than a registration endpoint.
+  flows:
+    authorizationCode:
+      authorizationUrl: https://endeavorbiomedicines.com/oauth/authorize
+      tokenUrl: https://endeavorbiomedicines.com/oauth/token
+      refreshUrl: https://endeavorbiomedicines.com/oauth/token
+      scopes:
+        mcp: Access the WordPress MCP server on this host.
+  sources:
+  - well-known/endeavor-biomedicines-oauth-authorization-server.json
+  - well-known/endeavor-biomedicines-oauth-protected-resource.json
+x-evidence:
+- fetched: '2026-08-12'
+  url: https://endeavorbiomedicines.com/wp-json/wp/v2/posts?per_page=1
+  http_status: 200
+  note: anonymous read succeeds
+- fetched: '2026-08-12'
+  url: https://endeavorbiomedicines.com/wp-json/mcp/mcp-oauth-server
+  http_status: 401
+  note: MCP requires an OAuth 2.1 bearer token in the "mcp" scope
