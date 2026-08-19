@@ -6,10 +6,8 @@ server:
   name: endeavor-biomedicines-wordpress-mcp
   transport: http
   url: https://endeavorbiomedicines.com/wp-json/mcp/mcp-oauth-server
-  implementation: >-
-    WordPress MCP adapter (the "mcp" REST namespace registered alongside the
-    wp-abilities/v1 namespace on this WordPress install). Not a product MCP server —
-    it is the site platform's agent surface.
+  implementation: WordPress MCP adapter (the "mcp" REST namespace registered alongside the wp-abilities/v1
+    namespace on this WordPress install). Not a product MCP server — it is the site platform's agent surface.
 authorization:
   gated: true
   scheme: OAuth 2.1
@@ -26,17 +24,14 @@ authorization:
   - S256
   bearer_methods_supported:
   - header
-  dynamic_client_registration: >-
-    client_id_metadata_document_supported = true; no registration_endpoint is
-    advertised.
+  dynamic_client_registration: client_id_metadata_document_supported = true; no registration_endpoint
+    is advertised.
 tools: []
-tools_note: >-
-  The live tool set could not be read. An anonymous POST of
-  {"jsonrpc":"2.0","id":1,"method":"tools/list"} and of "initialize" both returned
-  HTTP 401 {"code":"mcp_unauthorized","message":"MCP authentication required."}.
-  Enumerating the real tools with their inputSchema requires an OAuth 2.1 access
-  token in the "mcp" scope, which API Evangelist does not hold and will not obtain.
-  No tools are recorded rather than guessed.
+tools_note: The live tool set could not be read. An anonymous POST of {"jsonrpc":"2.0","id":1,"method":"tools/list"}
+  and of "initialize" both returned HTTP 401 {"code":"mcp_unauthorized","message":"MCP authentication
+  required."}. Enumerating the real tools with their inputSchema requires an OAuth 2.1 access token in
+  the "mcp" scope, which API Evangelist does not hold and will not obtain. No tools are recorded rather
+  than guessed.
 related_routes:
 - /wp-json/mcp
 - /wp-json/mcp/mcp-adapter-default-server
@@ -56,3 +51,10 @@ x-evidence:
   url: https://endeavorbiomedicines.com/.well-known/oauth-authorization-server
   http_status: 200
   content_type: application/json
+deployment:
+  mode: remote
+  endpoint: https://endeavorbiomedicines.com/wp-json/mcp/mcp-oauth-server
+  verified: probed
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census
