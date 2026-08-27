@@ -30,37 +30,13 @@ tags:
 - Content
 - WordPress
 apis:
-- name: Endeavor BioMedicines WordPress REST API
-  description: 'The public WordPress REST API served by endeavorbiomedicines.com. Content
-    read operations — posts, pages, media, taxonomies and types — answer anonymously,
-    which makes the company''s press releases, pipeline pages and media library machine-readable.
-    Write and administrative operations require WordPress authentication. This is a
-    site-platform API rather than a product API: Endeavor BioMedicines publishes no
-    developer portal, no API documentation and no plans.'
-  humanURL: https://endeavorbiomedicines.com/
-  baseURL: https://endeavorbiomedicines.com/wp-json
-  tags:
-  - Content
-  - WordPress
-  - REST
-  properties:
-  - type: OpenAPI
-    url: openapi/endeavor-biomedicines-wordpress-rest-openapi.yml
-  - type: Overlay
-    url: overlays/endeavor-biomedicines-wordpress-rest-overlay.yaml
-  - type: Conventions
-    url: conventions/endeavor-biomedicines-conventions.yml
-  - type: ErrorCatalog
-    url: errors/endeavor-biomedicines-problem-types.yml
-  - type: DataModel
-    url: data-model/endeavor-biomedicines-data-model.yml
 - name: Endeavor BioMedicines WordPress MCP Server
-  description: 'An MCP (Model Context Protocol) server exposed by the WordPress MCP
-    adapter at /wp-json/mcp/mcp-oauth-server on endeavorbiomedicines.com. The endpoint
-    is live but authentication-gated: an anonymous initialize / tools/list returns HTTP
-    401 mcp_unauthorized. Its authorization server metadata is published anonymously
-    at /.well-known/oauth-authorization-server (OAuth 2.1, authorization_code + refresh_token,
-    PKCE S256, single scope "mcp"), and the protected-resource metadata at /.well-known/oauth-protected-resource.'
+  description: >-
+    An MCP (Model Context Protocol) server exposed by the WordPress MCP adapter at /wp-json/mcp/mcp-oauth-server
+    on endeavorbiomedicines.com. The endpoint is live but authentication-gated: an anonymous initialize
+    / tools/list returns HTTP 401 mcp_unauthorized. Its authorization server metadata is published anonymously
+    at /.well-known/oauth-authorization-server (OAuth 2.1, authorization_code + refresh_token, PKCE S256,
+    single scope "mcp"), and the protected-resource metadata at /.well-known/oauth-protected-resource.
   humanURL: https://endeavorbiomedicines.com/.well-known/oauth-protected-resource
   baseURL: https://endeavorbiomedicines.com/wp-json/mcp/mcp-oauth-server
   tags:
@@ -72,12 +48,112 @@ apis:
     url: mcp/endeavor-biomedicines-mcp.yml
   - type: ToolCrosswalk
     url: mcp/endeavor-biomedicines-tool-crosswalk.yml
+- aid: endeavor-biomedicines:endeavor-biomedicines-mcp-api
+  name: Endeavor BioMedicines MCP API
+  description: The mcp API from Endeavor BioMedicines — 3 operation(s) for mcp.
+  humanURL: https://endeavorbiomedicines.com/
+  baseURL: https://endeavorbiomedicines.com/wp-json
+  tags:
+  - mcp
+  properties:
+  - type: OpenAPI
+    url: openapi/endeavor-biomedicines-mcp-api-openapi.yml
+  - type: Conventions
+    url: conventions/endeavor-biomedicines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/endeavor-biomedicines-problem-types.yml
+  - type: DataModel
+    url: data-model/endeavor-biomedicines-data-model.yml
+- aid: endeavor-biomedicines:endeavor-biomedicines-oembed-1-0-api
+  name: Endeavor BioMedicines Oembed/1.0 API
+  description: The oembed/1.0 API from Endeavor BioMedicines — 3 operation(s) for oembed/1.0.
+  humanURL: https://endeavorbiomedicines.com/
+  baseURL: https://endeavorbiomedicines.com/wp-json
+  tags:
+  - oembed/1.0
+  properties:
+  - type: OpenAPI
+    url: openapi/endeavor-biomedicines-oembed-1-0-api-openapi.yml
+  - type: Conventions
+    url: conventions/endeavor-biomedicines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/endeavor-biomedicines-problem-types.yml
+  - type: DataModel
+    url: data-model/endeavor-biomedicines-data-model.yml
+- aid: endeavor-biomedicines:endeavor-biomedicines-wp-abilities-v1-api
+  name: Endeavor BioMedicines Wp Abilities/v1 API
+  description: The wp-abilities/v1 API from Endeavor BioMedicines — 6 operation(s) for wp-abilities/v1.
+  humanURL: https://endeavorbiomedicines.com/
+  baseURL: https://endeavorbiomedicines.com/wp-json
+  tags:
+  - wp-abilities/v1
+  properties:
+  - type: OpenAPI
+    url: openapi/endeavor-biomedicines-wp-abilities-v1-api-openapi.yml
+  - type: Conventions
+    url: conventions/endeavor-biomedicines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/endeavor-biomedicines-problem-types.yml
+  - type: DataModel
+    url: data-model/endeavor-biomedicines-data-model.yml
+- aid: endeavor-biomedicines:endeavor-biomedicines-wp-block-editor-v1-api
+  name: Endeavor BioMedicines Wp Block Editor/v1 API
+  description: >-
+    The wp-block-editor/v1 API from Endeavor BioMedicines — 4 operation(s) for wp-block-editor/v1.
+  humanURL: https://endeavorbiomedicines.com/
+  baseURL: https://endeavorbiomedicines.com/wp-json
+  tags:
+  - wp-block-editor/v1
+  properties:
+  - type: OpenAPI
+    url: openapi/endeavor-biomedicines-wp-block-editor-v1-api-openapi.yml
+  - type: Conventions
+    url: conventions/endeavor-biomedicines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/endeavor-biomedicines-problem-types.yml
+  - type: DataModel
+    url: data-model/endeavor-biomedicines-data-model.yml
+- aid: endeavor-biomedicines:endeavor-biomedicines-wp-site-health-v1-api
+  name: Endeavor BioMedicines Wp Site Health/v1 API
+  description: >-
+    The wp-site-health/v1 API from Endeavor BioMedicines — 8 operation(s) for wp-site-health/v1.
+  humanURL: https://endeavorbiomedicines.com/
+  baseURL: https://endeavorbiomedicines.com/wp-json
+  tags:
+  - wp-site-health/v1
+  properties:
+  - type: OpenAPI
+    url: openapi/endeavor-biomedicines-wp-site-health-v1-api-openapi.yml
+  - type: Conventions
+    url: conventions/endeavor-biomedicines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/endeavor-biomedicines-problem-types.yml
+  - type: DataModel
+    url: data-model/endeavor-biomedicines-data-model.yml
+- aid: endeavor-biomedicines:endeavor-biomedicines-wp-v2-api
+  name: Endeavor BioMedicines Wp/v2 API
+  description: The wp/v2 API from Endeavor BioMedicines — 122 operation(s) for wp/v2.
+  humanURL: https://endeavorbiomedicines.com/
+  baseURL: https://endeavorbiomedicines.com/wp-json
+  tags:
+  - wp/v2
+  properties:
+  - type: OpenAPI
+    url: openapi/endeavor-biomedicines-wp-v2-api-openapi.yml
+  - type: Conventions
+    url: conventions/endeavor-biomedicines-conventions.yml
+  - type: ErrorCatalog
+    url: errors/endeavor-biomedicines-problem-types.yml
+  - type: DataModel
+    url: data-model/endeavor-biomedicines-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/endeavor-biomedicines-wordpress-rest-overlay.yaml
 - type: Website
   url: https://endeavorbiomedicines.com/
 - type: Blog
