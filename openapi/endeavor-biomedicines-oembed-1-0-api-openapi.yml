@@ -1,0 +1,237 @@
+openapi: 3.2.0
+info:
+  title: Endeavor BioMedicines WordPress REST Oembed/1.0 API
+  version: wp/v2
+  description: Machine-readable description of the public WordPress REST API served by endeavorbiomedicines.com. DERIVED mechanically from the route index the site itself publishes at https://endeavorbiomedicines.com/wp-json/ on 2026-08-12 — every path, method, argument, default and enum below is taken verbatim from that document. Only WordPress-core namespaces are included (wp/v2, oembed/1.0, wp-abilities/v1, mcp, wp-site-health/v1, wp-block-editor/v1); third-party plugin namespaces present on the same host are listed in x-excluded-namespaces. Content read operations (posts, pages, media, taxonomies, types) answer anonymously; write and administrative operations require WordPress authentication. This is a site-platform API, not a product API — Endeavor BioMedicines publishes no developer program.
+  contact:
+    name: Endeavor BioMedicines
+    url: https://endeavorbiomedicines.com/contact/
+servers:
+- url: https://endeavorbiomedicines.com/wp-json
+tags:
+- name: oembed/1.0
+paths:
+  /oembed/1.0:
+    get:
+      operationId: getOembed10
+      summary: GET /oembed/1.0
+      tags:
+      - oembed/1.0
+      parameters:
+      - name: namespace
+        in: query
+        required: false
+        schema:
+          type: string
+          default: oembed/1.0
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          default: view
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: Forbidden — the current user cannot perform this action
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /oembed/1.0/embed:
+    get:
+      operationId: getOembed10Embed
+      summary: GET /oembed/1.0/embed
+      tags:
+      - oembed/1.0
+      parameters:
+      - name: url
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uri
+        description: The URL of the resource for which to fetch oEmbed data.
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: string
+          default: json
+      - name: maxwidth
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 600
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: Forbidden — the current user cannot perform this action
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /oembed/1.0/proxy:
+    get:
+      operationId: getOembed10Proxy
+      summary: GET /oembed/1.0/proxy
+      tags:
+      - oembed/1.0
+      parameters:
+      - name: url
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uri
+        description: The URL of the resource for which to fetch oEmbed data.
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
+        description: The oEmbed format to use.
+      - name: maxwidth
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 600
+        description: The maximum width of the embed frame in pixels.
+      - name: maxheight
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: The maximum height of the embed frame in pixels.
+      - name: discover
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: true
+        description: Whether to perform an oEmbed discovery request for unsanctioned providers.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '403':
+          description: Forbidden — the current user cannot perform this action
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+components:
+  schemas:
+    WPError:
+      type: object
+      description: WordPress REST API error envelope, observed live on this host.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code, e.g. mcp_unauthorized.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code.
+  securitySchemes:
+    wpNonce:
+      type: apiKey
+      in: header
+      name: X-WP-Nonce
+      description: WordPress cookie-authenticated nonce, accepted per the Access-Control-Allow-Headers advertised by this host.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token accepted per the advertised Access-Control-Allow-Headers: Authorization.'
+x-derived-from: https://endeavorbiomedicines.com/wp-json/
+x-derived-on: '2026-08-12'
+x-excluded-namespaces:
+  (root): 2
+  ajaxselect2/v1: 2
+  cky/v1: 36
+  duplicate-post/v1: 2
+  redirection/v1: 32
+  sliderrevolution: 7
+  wordfence-login-security/v1: 3
+  wordfence/v1: 7
+  wp-rocket/v1: 17
+  wp-toolkit/api: 3
+  yoast/v1: 59

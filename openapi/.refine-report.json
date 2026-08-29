@@ -1,0 +1,24 @@
+{
+  "provider": "endeavor-biomedicines",
+  "sources": [
+    "endeavor-biomedicines-wordpress-rest-openapi.yml"
+  ],
+  "outputs": [
+    "endeavor-biomedicines-mcp-api-openapi.yml",
+    "endeavor-biomedicines-oembed-1-0-api-openapi.yml",
+    "endeavor-biomedicines-wp-abilities-v1-api-openapi.yml",
+    "endeavor-biomedicines-wp-block-editor-v1-api-openapi.yml",
+    "endeavor-biomedicines-wp-site-health-v1-api-openapi.yml",
+    "endeavor-biomedicines-wp-v2-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/endeavor-biomedicines-wordpress-rest-openapi.yml"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "endeavor-biomedicines-wordpress-rest-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: written (+6 apis, 7 total)"
+  ],
+  "skipped": []
+}
