@@ -66,6 +66,8 @@ apis:
   humanURL: https://endeavorbiomedicines.com/
   baseURL: https://endeavorbiomedicines.com/wp-json
   tags:
+  - MCP
+  tags_raw:
   - mcp
   properties:
   - type: OpenAPI
