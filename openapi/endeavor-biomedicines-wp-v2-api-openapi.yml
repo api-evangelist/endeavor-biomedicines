@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Endeavor BioMedicines WordPress REST Wp/v2 API
   version: wp/v2
-  description: Machine-readable description of the public WordPress REST API served by endeavorbiomedicines.com. DERIVED mechanically from the route index the site itself publishes at https://endeavorbiomedicines.com/wp-json/ on 2026-08-12 — every path, method, argument, default and enum below is taken verbatim from that document. Only WordPress-core namespaces are included (wp/v2, oembed/1.0, wp-abilities/v1, mcp, wp-site-health/v1, wp-block-editor/v1); third-party plugin namespaces present on the same host are listed in x-excluded-namespaces. Content read operations (posts, pages, media, taxonomies, types) answer anonymously; write and administrative operations require WordPress authentication. This is a site-platform API, not a product API — Endeavor BioMedicines publishes no developer program.
+  description: Machine-readable description of the public WordPress REST API served by endeavorbiomedicines.com.
   contact:
     name: Endeavor BioMedicines
     url: https://endeavorbiomedicines.com/contact/
@@ -3941,7 +3941,7 @@ paths:
         type: string
     get:
       operationId: getWpV2GlobalstylesThemesByStylesheet
-      summary: GET /wp/v2/global-styles/themes/{stylesheet}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)
+      summary: GET /wp/v2/global-styles/themes/{stylesheet}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?…
       tags:
       - wp/v2
       responses:
@@ -15271,7 +15271,7 @@ paths:
         type: string
     get:
       operationId: getWpV2TemplatepartsByIdwAutosaves
-      summary: GET /wp/v2/template-parts/{id}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/autosaves
+      summary: GET /wp/v2/template-parts/{id}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/au…
       tags:
       - wp/v2
       parameters:
@@ -15319,7 +15319,7 @@ paths:
                 $ref: '#/components/schemas/WPError'
     post:
       operationId: postWpV2TemplatepartsByIdwAutosaves
-      summary: POST /wp/v2/template-parts/{id}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/autosaves
+      summary: POST /wp/v2/template-parts/{id}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/a…
       tags:
       - wp/v2
       requestBody:
@@ -15408,7 +15408,7 @@ paths:
         type: string
     get:
       operationId: getWpV2TemplatepartsByParentwAutosavesById
-      summary: GET /wp/v2/template-parts/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/autosaves/{id}
+      summary: GET /wp/v2/template-parts/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+…
       tags:
       - wp/v2
       parameters:
@@ -15463,7 +15463,7 @@ paths:
         type: string
     get:
       operationId: getWpV2TemplatepartsByParentwRevisions
-      summary: GET /wp/v2/template-parts/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/revisions
+      summary: GET /wp/v2/template-parts/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+…
       tags:
       - wp/v2
       parameters:
@@ -15591,7 +15591,7 @@ paths:
         type: string
     get:
       operationId: getWpV2TemplatepartsByParentwRevisionsById
-      summary: GET /wp/v2/template-parts/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/revisions/{id}
+      summary: GET /wp/v2/template-parts/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+…
       tags:
       - wp/v2
       parameters:
@@ -15639,7 +15639,7 @@ paths:
                 $ref: '#/components/schemas/WPError'
     delete:
       operationId: deleteWpV2TemplatepartsByParentwRevisionsById
-      summary: DELETE /wp/v2/template-parts/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/revisions/{id}
+      summary: DELETE /wp/v2/template-parts/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%…
       tags:
       - wp/v2
       parameters:
@@ -16214,7 +16214,7 @@ paths:
         type: string
     get:
       operationId: getWpV2TemplatesByIdwAutosaves
-      summary: GET /wp/v2/templates/{id}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/autosaves
+      summary: GET /wp/v2/templates/{id}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/autosav…
       tags:
       - wp/v2
       parameters:
@@ -16262,7 +16262,7 @@ paths:
                 $ref: '#/components/schemas/WPError'
     post:
       operationId: postWpV2TemplatesByIdwAutosaves
-      summary: POST /wp/v2/templates/{id}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/autosaves
+      summary: POST /wp/v2/templates/{id}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/autosa…
       tags:
       - wp/v2
       requestBody:
@@ -16348,7 +16348,7 @@ paths:
         type: string
     get:
       operationId: getWpV2TemplatesByParentwAutosavesById
-      summary: GET /wp/v2/templates/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/autosaves/{id}
+      summary: GET /wp/v2/templates/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/aut…
       tags:
       - wp/v2
       parameters:
@@ -16403,7 +16403,7 @@ paths:
         type: string
     get:
       operationId: getWpV2TemplatesByParentwRevisions
-      summary: GET /wp/v2/templates/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/revisions
+      summary: GET /wp/v2/templates/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/rev…
       tags:
       - wp/v2
       parameters:
@@ -16531,7 +16531,7 @@ paths:
         type: string
     get:
       operationId: getWpV2TemplatesByParentwRevisionsById
-      summary: GET /wp/v2/templates/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/revisions/{id}
+      summary: GET /wp/v2/templates/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/rev…
       tags:
       - wp/v2
       parameters:
@@ -16579,7 +16579,7 @@ paths:
                 $ref: '#/components/schemas/WPError'
     delete:
       operationId: deleteWpV2TemplatesByParentwRevisionsById
-      summary: DELETE /wp/v2/templates/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/revisions/{id}
+      summary: DELETE /wp/v2/templates/{parent}/:<>\*\?"\|]+(?:\/[^\/:<>\*\?"\|]+)?)[\/\w%-]+)/…
       tags:
       - wp/v2
       parameters:

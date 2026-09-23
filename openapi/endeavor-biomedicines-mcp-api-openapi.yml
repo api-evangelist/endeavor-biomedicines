@@ -2,21 +2,21 @@ openapi: 3.2.0
 info:
   title: Endeavor BioMedicines WordPress REST MCP API
   version: wp/v2
-  description: Machine-readable description of the public WordPress REST API served by endeavorbiomedicines.com. DERIVED mechanically from the route index the site itself publishes at https://endeavorbiomedicines.com/wp-json/ on 2026-08-12 — every path, method, argument, default and enum below is taken verbatim from that document. Only WordPress-core namespaces are included (wp/v2, oembed/1.0, wp-abilities/v1, mcp, wp-site-health/v1, wp-block-editor/v1); third-party plugin namespaces present on the same host are listed in x-excluded-namespaces. Content read operations (posts, pages, media, taxonomies, types) answer anonymously; write and administrative operations require WordPress authentication. This is a site-platform API, not a product API — Endeavor BioMedicines publishes no developer program.
+  description: Machine-readable description of the public WordPress REST API served by endeavorbiomedicines.com.
   contact:
     name: Endeavor BioMedicines
     url: https://endeavorbiomedicines.com/contact/
 servers:
 - url: https://endeavorbiomedicines.com/wp-json
 tags:
-- name: mcp
+- name: MCP
 paths:
   /mcp:
     get:
       operationId: getMcp
       summary: GET /mcp
       tags:
-      - mcp
+      - MCP
       parameters:
       - name: namespace
         in: query
@@ -66,7 +66,7 @@ paths:
       operationId: postMcpMcpadapterdefaultserver
       summary: POST /mcp/mcp-adapter-default-server
       tags:
-      - mcp
+      - MCP
       responses:
         '200':
           description: Success
@@ -102,7 +102,7 @@ paths:
       operationId: getMcpMcpadapterdefaultserver
       summary: GET /mcp/mcp-adapter-default-server
       tags:
-      - mcp
+      - MCP
       responses:
         '200':
           description: Success
@@ -138,7 +138,7 @@ paths:
       operationId: deleteMcpMcpadapterdefaultserver
       summary: DELETE /mcp/mcp-adapter-default-server
       tags:
-      - mcp
+      - MCP
       responses:
         '200':
           description: Success
@@ -175,7 +175,7 @@ paths:
       operationId: postMcpMcpoauthserver
       summary: POST /mcp/mcp-oauth-server
       tags:
-      - mcp
+      - MCP
       responses:
         '200':
           description: Success
@@ -211,7 +211,7 @@ paths:
       operationId: getMcpMcpoauthserver
       summary: GET /mcp/mcp-oauth-server
       tags:
-      - mcp
+      - MCP
       responses:
         '200':
           description: Success
@@ -247,7 +247,7 @@ paths:
       operationId: deleteMcpMcpoauthserver
       summary: DELETE /mcp/mcp-oauth-server
       tags:
-      - mcp
+      - MCP
       responses:
         '200':
           description: Success
