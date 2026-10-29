@@ -64,36 +64,127 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Endeavor BioMedicines is a clinical-stage biotechnology company headquartered in San Diego,
-California, developing medicines aimed at reversing — not merely slowing — the course of
-life-threatening fibrotic and oncologic disease. Its lead investigational candidate,
-taladegib (ENV-101), is a Hedgehog pathway inhibitor in clinical development for idiopathic
-pulmonary fibrosis; it has also in-licensed HMBD-501, a next-generation HER3-targeted
-antibody-drug conjugate.
+Endeavor BioMedicines is a clinical-stage biotechnology company headquartered in San Diego, California, developing medicines aimed at reversing — not merely slowing — the course of life-threatening fibrotic and oncologic disease. Its lead investigational candidate, taladegib (ENV-101), is an inhibitor of the Hedgehog signaling pathway in clinical development for idiopathic pulmonary fibrosis, and it has in-licensed HMBD-501, a next-generation HER3-targeted antibody-drug conjugate. Endeavor publishes no developer program or product API; the machine-readable surface profiled here is the public WordPress REST API served from its corporate website, together with an authenticated WordPress MCP server and the RFC 8414 / RFC 9728 OAuth 2.1 discovery documents that host advertises.
 
-## What was found
+**Areas:** Company · Biotechnology · Pharmaceuticals · Life Sciences · Clinical Trials · Healthcare · Drug Development · Content · WordPress
 
-**Endeavor BioMedicines runs no developer program.** There is no developer portal, no API
-documentation, no pricing, no sign-up, no SDKs, no status page and no published OpenAPI.
+## Endeavor BioMedicines on APIs.io
 
-There is, however, a real machine-readable surface on the corporate host, and it is profiled
-here honestly as what it is — a site-platform API rather than a product API:
+Everything profiled for Endeavor BioMedicines is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/endeavor-biomedicines/](https://apis.io/providers/endeavor-biomedicines/)** — or go straight to one of the APIs or properties below.
 
-- **WordPress REST API** at `https://endeavorbiomedicines.com/wp-json` — 316 routes across 16
-  namespaces. Content reads (posts, pages, media, taxonomies, the leadership roster) answer
-  anonymously. `openapi/` holds an OpenAPI 3.1 description **derived** by API Evangelist from
-  the route index the host itself publishes; the verbatim route index is kept in
-  `openapi/_original/`.
-- **MCP server** at `/wp-json/mcp/mcp-oauth-server` — live but authentication-gated. An
-  anonymous `tools/list` returns `401 mcp_unauthorized`, so **no tool list is recorded**; the
-  crosswalk deliberately holds zero mapped rows rather than guessed ones.
-- **OAuth 2.1 discovery documents** served anonymously at
-  `/.well-known/oauth-authorization-server` (RFC 8414) and `/.well-known/oauth-protected-resource`
-  (RFC 9728) — authorization code + refresh token, PKCE S256, single scope `mcp`. Both are
-  saved verbatim in `well-known/`.
+### APIs (2)
 
-No A2A agent card, no security.txt, no OpenID configuration, no api-catalog, no ai-plugin —
-all probed, all 404, all recorded as absences in `well-known/`.
+- [Endeavor BioMedicines WordPress MCP Server](https://apis.io/apis/endeavor-biomedicines/endeavor-biomedicines-wordpress-mcp-server/) — An MCP (Model Context Protocol) server exposed by the WordPress MCP adapter at /wp-json/mcp/mcp-oauth-server on endeavorbiomedicines.com. The endpoint is…
+- [Endeavor BioMedicines Website (WordPress REST)](https://apis.io/apis/endeavor-biomedicines/endeavorbiomedicines-com-website-wordpress-rest/) — The public WordPress REST API (wp-json) of the Endeavor BioMedicines website at endeavorbiomedicines.com: the route index of the site's content management…
 
-- Company: https://endeavorbiomedicines.com/
-- Secondary market listing: https://forgeglobal.com/endeavor-biomedicines_stock/
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [endeavor-biomedicines-wordpress-mcp](https://apis.io/servers/endeavor-biomedicines/endeavor-biomedicines-wordpress-mcp/)
+
+#### Collections (1)
+
+Postman and Open Collection request collections.
+
+- [Endeavor BioMedicines WordPress REST API](https://apis.io/collections/endeavor-biomedicines/open-endeavor-biomedicines-wordpress-rest/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Endeavor Biomedicines Wordpress Rest Overlay](https://apis.io/overlays/endeavor-biomedicines/endeavor-biomedicines-wordpress-rest-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Endeavor Biomedicines Authentication](https://apis.io/security/endeavor-biomedicines/endeavor-biomedicines-authentication/)
+- [Endeavor Biomedicines Domain Security](https://apis.io/security/endeavor-biomedicines/endeavor-biomedicines-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Endeavor Biomedicines Scopes](https://apis.io/scopes/endeavor-biomedicines/endeavor-biomedicines-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Endeavor Biomedicines Plans Pricing](https://apis.io/plans/endeavor-biomedicines/endeavor-biomedicines-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Endeavor Biomedicines Rate Limits](https://apis.io/rate-limits/endeavor-biomedicines/endeavor-biomedicines-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://endeavorbiomedicines.com/)
+- [Support](https://endeavorbiomedicines.com/contact/)
+- [Blog](https://endeavorbiomedicines.com/media/)
+- [Terms of service](https://endeavorbiomedicines.com/legal-notices/)
+- [Privacy policy](https://endeavorbiomedicines.com/privacy/)
+
+## API Evangelist rating
+
+**Kin Score 21.3** — emerging · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 60.0 |
+| Contract quality | 1.7 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 21.1 |
+
+**Agent readiness 20.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 32.8** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/endeavor-biomedicines/](https://apis.io/providers/endeavor-biomedicines/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Endeavor BioMedicines: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/endeavor-biomedicines/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
